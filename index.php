@@ -1,25 +1,31 @@
 <?php
-    class Movie {
-        public $og_name;
-        public $genre;
-
-        function __construct($_og_name = null, $_genre= null)
-        {
-            $this->og_name = $_og_name;
-            $this->genre = $_genre;
-        }
+class Movie
+{
+    public $og_name;
+    public $genre;
+    public $time_from = 0;
+    function __construct($_og_name = null, $_genre = null)
+    {
+        $this->og_name = $_og_name;
+        $this->genre = $_genre;
     }
 
-    $interstellar = new Movie ();
-    $interstellar->og_name = "Interstellar";
-    $interstellar->genre = "Sci-Fi";
+    public function setTimeFrom($_time_from)
+    {
+        if ($_time_from < 2024) {
+            $this->time_from = 2023 - $_time_from;
+        }
+    }
+}
 
-    $dunkirk = new Movie ("Dunkirk", "War");
-    // echo $dunkirk->og_name;
-    // echo $dunkirk->genre;
+$interstellar = new Movie();
+$interstellar->og_name = "Interstellar";
+$interstellar->genre = "Sci-Fi";
+$interstellar->setTimeFrom(2014);
 
-    // $dunkirk->og_name = "Dunkirk";
-    // $dunkirk->genre = "War";
-    var_dump($interstellar);
-    var_dump($dunkirk);
-?>
+
+$dunkirk = new Movie("Dunkirk", "War");
+$dunkirk->setTimeFrom(2017);
+
+var_dump($interstellar);
+var_dump($dunkirk);
